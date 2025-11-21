@@ -1,0 +1,208 @@
+{
+  "hero": {
+    "headline": "Be Visible to AI",
+    "subheadline": "Add your site to the world's first AI-optimized directory. Analyze, optimize, and make your content readable to large language models.",
+    "ctaPrimary": "Get Free Book + List Your Site",
+    "ctaSecondary": "Try Analyzer Pro",
+    "tagline": "Be Visible to AI — Optimize your site for LLMs.",
+    "analyzerDesc": "Run AI-powered site analysis in seconds."
+  },
+  "nav": {
+    "home": "Home",
+    "analyzer": "Analyzer Pro",
+    "metadata": "Metadata AI",
+    "pricing": "Pricing",
+    "about": "About",
+    "faq": "FAQ",
+    "directory": "Directory",
+    "dashboard": "Dashboard",
+    "login": "Login",
+    "logout": "Logout"
+  },
+  "pricing": {
+    "title": "Choose Your Plan",
+    "subtitle": "Start free, then upgrade to Pro or Agency for deeper AI visibility and automation.",
+    "plans": {
+      "free": {
+        "title": "Free",
+        "price": "$0 / year",
+        "subtitle": "3-month free trial for one link",
+        "features": [
+          "3-month free trial for one link",
+          "Manual llms.txt generation",
+          "Analyzer Basic",
+          "Basic AI analysis"
+        ]
+      },
+      "pro": {
+        "title": "Pro",
+        "price": "$9 / year",
+        "subtitle": "For serious content creators",
+        "features": [
+          "Auto llms.txt updates every 90 days",
+          "Analyzer Pro access",
+          "AI Metadata suggestions",
+          "Priority directory listing",
+          "Email insights report",
+          "Featured boost option"
+        ]
+      },
+      "agency": {
+        "title": "Agency",
+        "price": "$30 / year",
+        "subtitle": "For teams and agencies",
+        "features": [
+          "Manage up to 50 links",
+          "Team access (3 members)",
+          "Auto llms.txt updates",
+          "Analyzer Pro and Metadata AI",
+          "Featured placement for top links",
+          "Analytics dashboard",
+          "Priority support"
+        ]
+      }
+    },
+    "cta": "Join Now — Be Visible to AI"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": {
+      "q": "What is LLMO?",
+      "a": "LLMO (Large Language Model Optimization) is the new SEO — optimizing your site for AI systems like ChatGPT, Claude, and Gemini."
+    },
+    "q2": {
+      "q": "How does Analyzer Pro work?",
+      "a": "It checks how AI sees your site, your llms.txt quality, and your overall machine legibility — then gives a visibility score."
+    },
+    "q3": {
+      "q": "What's llms.txt?",
+      "a": "It's a special file that helps AI read your content cleanly, like sitemap.xml but for LLMs."
+    },
+    "q4": {
+      "q": "Can I list social media profiles?",
+      "a": "Yes. You can add links to your blog, company website, or any verified social account."
+    },
+    "q5": {
+      "q": "What's included in Pro and Agency plans?",
+      "a": "Pro adds automation and advanced analytics. Agency adds multi-link management and featured visibility."
+    },
+    "q6": {
+      "q": "How do I renew my subscription?",
+      "a": "Pro and Agency plans auto-renew annually via Stripe. You'll receive email reminders 7 days before expiry. Free trial links expire after 3 months and can be renewed with a backlink or by upgrading to Pro."
+    },
+    "q7": {
+      "q": "How does Analyzer Pro differ from Basic?",
+      "a": "Analyzer Pro provides advanced AI visibility scoring, detailed recommendations for llms.txt optimization, metadata suggestions, and automated monitoring. Basic Analyzer offers a simple readability score only."
+    },
+    "q8": {
+      "q": "How is my payment handled?",
+      "a": "All payments are processed securely through Stripe. We accept major credit cards and debit cards. Your payment information is encrypted and never stored on our servers."
+    },
+    "q9": {
+      "q": "How does automatic llms.txt generation work?",
+      "a": "Pro and Agency plans include automatic llms.txt file updates every 90 days. The system crawls your site, generates an optimized llms.txt file, and provides installation instructions. You can also manually regenerate anytime from your dashboard."
+    },
+    "q10": {
+      "q": "What payment methods do you accept?",
+      "a": "We accept all major credit cards (Visa, Mastercard, American Express) and debit cards through Stripe. Payment is processed securely and automatically renews annually for Pro and Agency plans."
+    }
+  },
+  "footer": {
+    "tagline": "Be Visible to AI — The Future of Optimization.",
+    "links": {
+      "book": "Free Book",
+      "amazon": "Full Edition on Amazon",
+      "pricing": "Pricing",
+      "dashboard": "Dashboard",
+      "privacy": "Privacy Policy"
+    }
+  },
+  "cta": {
+    "banner": {
+      "title": "Free eBook: LLMO Quick Start",
+      "text": "Learn how to make your content visible in the age of AI.",
+      "button": "Get It Free + List Your Site"
+    }
+  },
+  "common": {
+    "welcome": "Welcome",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "home": "Home",
+    "about": "About",
+    "directory": "Directory",
+    "dashboard": "Dashboard",
+    "myLinks": "My Links",
+    "admin": "Admin",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "addLink": "Add Link",
+    "analyzer": "Analyzer"
+  },
+  "features": {
+    "aiOptimized": "AI-Optimized",
+    "aiOptimizedDesc": "Make your content discoverable by large language models and AI assistants like ChatGPT, Claude, and Gemini",
+    "simplePricing": "Simple Pricing",
+    "simplePricingDesc": "Start free for 3 months with one link included. Then upgrade to Pro ($9/year) or Agency ($30/year) for automation and advanced features.",
+    "easyManagement": "Easy Management",
+    "easyManagementDesc": "Dashboard to manage all your links, categories, and analytics. Monitor visibility and citations in real-time"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subscriptionStatus": "Subscription Status",
+    "lastLlmsUpdate": "Last llms.txt update",
+    "autoRenewal": "Auto-renewal enabled",
+    "aiMetadata": "AI Metadata Suggestions",
+    "runAnalyzerPro": "Run Analyzer Pro",
+    "viewMetadata": "View Metadata Report",
+    "generateMetadata": "Generate Metadata ($1)",
+    "subscriptionSummary": "Subscription Summary",
+    "currentPlan": "Current Plan",
+    "nextRenewal": "Next Renewal",
+    "manageBilling": "Manage Billing"
+  },
+  "about": {
+    "title": "About LLMO Directory",
+    "tagline": "Be Visible to AI — The Future of Optimization.",
+    "description": "LLMO Directory is a new kind of website catalog — designed not only for human visitors but for AI models, crawlers, and chatbots.",
+    "integrations": "Integrations",
+    "integrationsDesc": "LLMO Directory integrates with Google OAuth for authentication, Stripe for secure payment processing, and Resend for email notifications and reminders.",
+    "whyLlmo": "Why LLMO",
+    "optimizedAi": "Optimized for AI parsing",
+    "optimizedAiDesc": "Structured data, semantic markup, and machine-readable formats",
+    "minimalistInterface": "Fast, minimalist interface",
+    "minimalistInterfaceDesc": "Terminal-inspired design that's both human and AI friendly",
+    "freeTrial": "Free listing for 3 months",
+    "freeTrialDesc": "Try LLMO optimization risk-free with no credit card required",
+    "affordablePro": "Affordable Pro plan",
+    "affordableProDesc": "Just $9/year for Pro or $30/year for Agency with unlimited submissions",
+    "autoRenewalReminders": "Automatic renewal reminders",
+    "autoRenewalRemindersDesc": "Never lose your listing with email notifications via Resend",
+    "performanceMonitoring": "Performance monitoring",
+    "performanceMonitoringDesc": "Track how your content performs in the AI ecosystem"
+  },
+  "common": {
+    "welcome": "Welcome",
+    "login": "Login",
+    "logout": "Logout",
+    "register": "Register",
+    "home": "Home",
+    "about": "About",
+    "directory": "Directory",
+    "dashboard": "Dashboard",
+    "myLinks": "My Links",
+    "admin": "Admin",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "addLink": "Add Link",
+    "analyzer": "Analyzer",
+    "getStarted": "Get Started",
+    "createAccount": "Create Account",
+    "startFreeTrial": "Start Free Trial",
+    "contactSupport": "Contact Support",
+    "stillHaveQuestions": "Still have questions?"
+  }
+}

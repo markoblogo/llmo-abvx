@@ -1,0 +1,49 @@
+{
+  "common": {
+    "welcome": "Bienvenue",
+    "login": "Connexion",
+    "logout": "Déconnexion",
+    "register": "S'inscrire",
+    "home": "Accueil",
+    "about": "À propos",
+    "directory": "Annuaire",
+    "dashboard": "Tableau de bord",
+    "myLinks": "Mes liens",
+    "admin": "Administrateur",
+    "pricing": "Tarification",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "addLink": "Ajouter un lien",
+    "analyzer": "Analyseur"
+  },
+  "hero": {
+    "title": "Soyez visible pour l'IA",
+    "subtitle": "Le premier annuaire d'optimisation LLM pour les blogs et sites web",
+    "startFree": "Commencer gratuitement",
+    "tryAnalyzer": "Essayer l'analyseur →"
+  },
+  "features": {
+    "aiOptimized": "Optimisé pour l'IA",
+    "aiOptimizedDesc": "Rendez votre contenu découvrable par les grands modèles de langage et assistants IA comme ChatGPT, Claude et Gemini",
+    "simplePricing": "Tarification simple",
+    "simplePricingDesc": "Commencez gratuitement pendant 3 mois avec un lien inclus. Puis seulement 1€/an par lien supplémentaire. Pas de frais cachés",
+    "easyManagement": "Gestion facile",
+    "easyManagementDesc": "Tableau de bord pour gérer tous vos liens, catégories et statistiques. Surveillez la visibilité et les citations en temps réel"
+  },
+  "pricing": {
+    "title": "Tarification simple",
+    "free": "Gratuit",
+    "freeDesc": "Parfait pour essayer LLMO Directory",
+    "pro": "Pro",
+    "proDesc": "Pour les créateurs et entreprises",
+    "perYear": "par an",
+    "freeTrial": "Gratuit pendant 3 mois",
+    "includes": "Inclut",
+    "link": "lien",
+    "links": "liens"
+  }
+}
+
+
+
+

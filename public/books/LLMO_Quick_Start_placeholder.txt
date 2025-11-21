@@ -1,0 +1,13 @@
+This is a placeholder for the LLMO Quick Start PDF.
+
+To add the actual PDF:
+1. Generate or upload the LLMO_Quick_Start.pdf file to public/books/
+2. The download page will automatically serve it from /books/LLMO_Quick_Start.pdf
+
+The PDF should contain the content from the attached documentation about:
+- LLMO fundamentals and why SEO died
+- How LLMs read and evaluate content
+- Writing for machines vs humans
+- The 15-minute optimization guide
+- Future of LLM optimization with agentic AI
+- Tools and resources for LLMO success

@@ -1,0 +1,48 @@
+name: Auto-Translate Locales
+
+on:
+  push:
+    paths:
+      - "locales/en.json"
+  workflow_dispatch:
+
+jobs:
+  translate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧩 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: 📦 Install pnpm
+        run: npm install -g pnpm
+
+      - name: 📦 Install dependencies
+        run: pnpm install
+
+      - name: 🔐 Set up environment
+        run: |
+          echo "OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> .env.local
+
+      - name: 🌐 Run translation sync
+        run: pnpm run translate
+
+      - name: 💾 Commit updated translations
+        run: |
+          git config user.name "llmo-auto-translate"
+          git config user.email "translate-bot@llmo.abvx.xyz"
+          git add locales/
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🌐 Auto-translate locales via OpenAI"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+

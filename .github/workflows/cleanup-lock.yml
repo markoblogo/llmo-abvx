@@ -1,0 +1,23 @@
+name: Cleanup Next.js Lock
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧩 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: 🧹 Remove .next lock
+        run: |
+          rm -rf .next/dev/lock || true
+          echo "✅ .next/dev/lock cleaned before deploy"
+
+
+
+

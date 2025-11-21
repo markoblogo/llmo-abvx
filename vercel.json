@@ -1,0 +1,60 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/send-reminders",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/book-reminder",
+      "schedule": "0 10 1 * *"
+    },
+    {
+      "path": "/api/reminders/subscription",
+      "schedule": "0 9 * * *"
+    },
+    {
+      "path": "/api/tasks/generate-sitemap",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/tasks/generate-llms",
+      "schedule": "0 2 * * *"
+    },
+    {
+      "path": "/api/rebuild-index",
+      "schedule": "0 5 * * *"
+    },
+    {
+      "path": "/api/cron/check-subscriptions",
+      "schedule": "0 6 * * *"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        }
+      ]
+    }
+  ]
+}

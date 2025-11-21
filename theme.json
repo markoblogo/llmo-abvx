@@ -1,0 +1,51 @@
+{
+  "name": "LLMO Custom Theme",
+  "version": "1.0.0",
+  "description": "Accessible light/dark theme for LLMO Directory with emerald accent",
+  "tailwind": {
+    "colors": {
+      "light": {
+        "background": "#ffffff",
+        "foreground": "#111827",
+        "textPrimary": "#111827",
+        "textSecondary": "#374151",
+        "muted": {
+          "foreground": "#6B7280"
+        },
+        "accent": {
+          "DEFAULT": "#22C55E",
+          "foreground": "#ffffff"
+        }
+      },
+      "dark": {
+        "background": "#0B0E0F",
+        "foreground": "#E5E7EB",
+        "textPrimary": "#F9FAFB",
+        "textSecondary": "#9CA3AF",
+        "muted": {
+          "foreground": "#9CA3AF"
+        },
+        "accent": {
+          "DEFAULT": "#34D399",
+          "foreground": "#0B0E0F"
+        }
+      }
+    },
+    "shadows": {
+      "accent": "0 0 12px rgba(34, 197, 94, 0.25)",
+      "accentHover": "0 0 16px rgba(34, 197, 94, 0.4)",
+      "accentDark": "0 0 12px rgba(52, 211, 153, 0.25)",
+      "accentDarkHover": "0 0 16px rgba(52, 211, 153, 0.4)"
+    },
+    "effects": {
+      "transition": "all 0.3s ease"
+    }
+  },
+  "wcag": {
+    "level": "AA",
+    "contrastRatios": {
+      "normalText": "4.5:1",
+      "largeText": "3:1"
+    }
+  }
+}

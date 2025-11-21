@@ -1,0 +1,192 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Added explicit color tokens for WCAG AA compliance */
+  --accent-light: #22c55e;
+  --accent-dark: #34d399;
+  --text-primary-light: #111827;
+  --text-secondary-light: #374151;
+  --text-primary-dark: #f9fafb;
+  --text-secondary-dark: #9ca3af;
+
+  /* Updated to emerald-based accent colors for better brand consistency */
+  --background: #ffffff;
+  --foreground: #111827; /* gray-900 for high contrast */
+  --card: #ffffff;
+  --card-foreground: #111827;
+  --popover: #f9fafb;
+  --popover-foreground: #111827;
+  --primary: #111827;
+  --primary-foreground: #f3f4f6;
+  --secondary: #f3f4f6;
+  --secondary-foreground: #111827;
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280; /* gray-600 for readable secondary text */
+  --accent: #22c55e; /* emerald-500 */
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: #e5e7eb;
+  --input: #e5e7eb;
+  --ring: #22c55e;
+  --radius: 0.5rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+.dark {
+  /* Dark graphite theme instead of pure black for softer appearance */
+  --background: #0b0e0f; /* dark graphite */
+  --foreground: #e5e7eb; /* gray-200 */
+  --card: #111827;
+  --card-foreground: #e5e7eb;
+  --popover: #111827;
+  --popover-foreground: #e5e7eb;
+  --primary: #e5e7eb;
+  --primary-foreground: #111827;
+  --secondary: #1f2937;
+  --secondary-foreground: #e5e7eb;
+  --muted: #1f2937;
+  --muted-foreground: #9ca3af; /* gray-400 for dark mode secondary text */
+  --accent: #34d399; /* emerald-400 for dark mode */
+  --accent-foreground: #0b0e0f;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #34d399;
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-sans: "Inter", "Inter Fallback";
+  --font-mono: "IBM Plex Mono", "IBM Plex Mono Fallback";
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground transition-colors duration-300 ease-in-out;
+  }
+
+  /* Added universal fallback for dark mode text lighter than #9CA3AF */
+  .dark {
+    /* Ensure all gray text lighter than gray-400 (#9CA3AF) uses at least gray-300 (#D1D5DB) */
+    --tw-text-opacity: 1;
+  }
+
+  .dark .text-gray-100,
+  .dark .text-gray-200 {
+    color: rgb(209 213 219 / var(--tw-text-opacity)) !important; /* gray-300 */
+  }
+
+  /* Enhanced glow effects with proper light/dark mode support */
+  .glow-accent {
+    box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
+    transition: all 0.3s ease;
+  }
+
+  .glow-accent:hover {
+    box-shadow: 0 0 16px rgba(34, 197, 94, 0.4);
+  }
+
+  .dark .glow-accent {
+    box-shadow: 0 0 12px rgba(52, 211, 153, 0.25);
+  }
+
+  .dark .glow-accent:hover {
+    box-shadow: 0 0 16px rgba(52, 211, 153, 0.4);
+  }
+
+  /* Page transition animations */
+  .page-enter {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .page-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  /* Added fade-in animation styles for eBook banners */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* System label styling with proper contrast for both modes */
+  .system-label {
+    @apply font-mono font-semibold tracking-tight text-emerald-600 dark:text-emerald-400;
+  }
+
+  /* High contrast text utilities */
+  .text-high-contrast {
+    @apply text-gray-900 dark:text-white;
+  }
+
+  .text-medium-contrast {
+    @apply text-gray-700 dark:text-gray-200;
+  }
+
+  .text-low-contrast {
+    @apply text-gray-600 dark:text-gray-400;
+  }
+}

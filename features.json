@@ -1,0 +1,119 @@
+{
+  "features": [
+    "LLM Optimization",
+    "LLMO",
+    "AI visibility",
+    "llms.txt",
+    "structured data",
+    "AI-optimized",
+    "LLM Optimization directory",
+    "ChatGPT",
+    "Claude",
+    "Gemini",
+    "language models",
+    "machine-readable",
+    "semantic markup",
+    "AI citation",
+    "directory for blogs",
+    "directory for websites",
+    "€1/year",
+    "€1 per year",
+    "1 euro per year",
+    "free for 3 months",
+    "3 months free",
+    "analytics",
+    "dashboard",
+    "link management",
+    "category management",
+    "hierarchical categories",
+    "content analyzer",
+    "analyzer",
+    "SEO is dead",
+    "traditional SEO",
+    "next SEO revolution",
+    "subscription",
+    "trial",
+    "renewal reminders",
+    "email reminders",
+    "payment via Stripe",
+    "Stripe integration",
+    "automatic renewal",
+    "real-time monitoring",
+    "citations tracking",
+    "AI discovery",
+    "backlinks",
+    "knowledge indexing"
+  ],
+  "requiredFeatures": {
+    "/": [
+      "LLM Optimization",
+      "AI visibility",
+      "directory for blogs",
+      "directory for websites",
+      "free for 3 months",
+      "€1/year"
+    ],
+    "/about": [
+      "LLMO",
+      "AI-optimized",
+      "LLM Optimization directory",
+      "llms.txt"
+    ],
+    "/faq": [
+      "llms.txt",
+      "LLM Optimization",
+      "€1/year",
+      "subscription",
+      "AI visibility"
+    ],
+    "/pricing": [
+      "€1/year",
+      "free for 3 months",
+      "subscription",
+      "Stripe"
+    ],
+    "/analyzer": [
+      "content analyzer",
+      "AI visibility",
+      "machine-readable",
+      "llms.txt"
+    ],
+    "/add-link": [
+      "LLM Optimization",
+      "AI-optimized",
+      "hierarchical categories"
+    ],
+    "/dashboard": [
+      "dashboard",
+      "link management",
+      "analytics",
+      "llms.txt"
+    ],
+    "/directory": [
+      "LLM Optimization directory",
+      "AI-optimized",
+      "llms.txt status",
+      "hierarchical categories"
+    ]
+  },
+  "shouldNotMention": {
+    "/": [],
+    "/about": [
+      "traditional SEO only"
+    ],
+    "/faq": [
+      "traditional SEO only",
+      "only SEO",
+      "just SEO"
+    ],
+    "/pricing": [],
+    "/analyzer": [],
+    "/add-link": [],
+    "/dashboard": [],
+    "/directory": []
+  }
+}
+
+
+
+

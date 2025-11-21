@@ -1,0 +1,57 @@
+name: Regenerate Sitemap
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # Daily at midnight UTC
+  push:
+    branches: [main]
+    paths:
+      - "scripts/generate-sitemap.ts"
+      - "app/**"
+      - "pages/**"
+  workflow_dispatch:
+
+jobs:
+  regenerate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🧩 Checkout repository
+        uses: actions/checkout@v4
+
+      - name: ⚙️ Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: "pnpm"
+
+      - name: 📦 Install pnpm
+        run: npm install -g pnpm
+
+      - name: 📦 Install dependencies
+        run: pnpm install
+
+      - name: 🔐 Set up environment
+        run: |
+          echo "NEXT_PUBLIC_SUPABASE_URL=${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}" >> .env.local
+          echo "SUPABASE_SERVICE_ROLE_KEY=${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}" >> .env.local
+
+      - name: 🗺️ Generate sitemap
+        run: npx tsx scripts/generate-sitemap.ts
+
+      - name: 💾 Commit updated sitemap
+        run: |
+          git config user.name "llmo-bot"
+          git config user.email "bot@llmo.abvx.xyz"
+          git add public/sitemap.xml
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "🗺️ Auto-regenerate sitemap"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+

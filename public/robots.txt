@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+Sitemap: https://llmo.abvx.xyz/sitemap.xml
+Crawl-delay: 2
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Disallow: /admin/
+Disallow: /api/

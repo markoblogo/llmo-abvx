@@ -1,0 +1,46 @@
+i18n Routing Setup Report
+================================================================================
+Generated: 2025-11-13T22:22:57.741Z
+
+Locales configured: en, fr, es, ru, uk, zh
+Default locale: en
+Total pages created: 14
+
+CREATED PAGES:
+--------------------------------------------------------------------------------
+Locale | Route | Type | File Path
+--------------------------------------------------------------------------------
+[locale] | /                    | home   | app/[locale]/page.tsx
+[locale] | about                | core   | app/[locale]/about/page.tsx
+[locale] | pricing              | core   | app/[locale]/pricing/page.tsx
+[locale] | faq                  | core   | app/[locale]/faq/page.tsx
+[locale] | contact              | core   | app/[locale]/contact/page.tsx
+[locale] | analyzer             | core   | app/[locale]/analyzer/page.tsx
+[locale] | dashboard            | core   | app/[locale]/dashboard/page.tsx
+[locale] | login                | auth   | app/[locale]/login/page.tsx
+[locale] | register             | auth   | app/[locale]/register/page.tsx
+[locale] | directory            | other  | app/[locale]/directory/page.tsx
+[locale] | my-links             | other  | app/[locale]/my-links/page.tsx
+[locale] | add-link             | other  | app/[locale]/add-link/page.tsx
+[locale] | admin                | other  | app/[locale]/admin/page.tsx
+[locale] | profile              | other  | app/[locale]/profile/page.tsx
+
+
+ROUTE MAPPING:
+--------------------------------------------------------------------------------
+Original Route | Localized Routes
+--------------------------------------------------------------------------------
+/               | /[locale]/
+about           | /[locale]about
+pricing         | /[locale]pricing
+faq             | /[locale]faq
+contact         | /[locale]contact
+analyzer        | /[locale]analyzer
+dashboard       | /[locale]dashboard
+login           | /[locale]login
+register        | /[locale]register
+directory       | /[locale]directory
+my-links        | /[locale]my-links
+add-link        | /[locale]add-link
+admin           | /[locale]admin
+profile         | /[locale]profile

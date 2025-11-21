@@ -1,0 +1,49 @@
+{
+  "common": {
+    "welcome": "欢迎",
+    "login": "登录",
+    "logout": "登出",
+    "register": "注册",
+    "home": "首页",
+    "about": "关于",
+    "directory": "目录",
+    "dashboard": "仪表板",
+    "myLinks": "我的链接",
+    "admin": "管理员",
+    "pricing": "定价",
+    "faq": "常见问题",
+    "contact": "联系",
+    "addLink": "添加链接",
+    "analyzer": "分析器"
+  },
+  "hero": {
+    "title": "让AI看到您",
+    "subtitle": "面向博客和网站的首个LLM优化目录",
+    "startFree": "免费开始",
+    "tryAnalyzer": "尝试分析器 →"
+  },
+  "features": {
+    "aiOptimized": "AI优化",
+    "aiOptimizedDesc": "让您的内容可被ChatGPT、Claude和Gemini等大型语言模型和AI助手发现",
+    "simplePricing": "简单定价",
+    "simplePricingDesc": "免费开始3个月，包含一个链接。然后每增加一个链接仅需1€/年。无隐藏费用",
+    "easyManagement": "易于管理",
+    "easyManagementDesc": "仪表板管理所有链接、类别和分析。实时监控可见性和引用"
+  },
+  "pricing": {
+    "title": "简单定价",
+    "free": "免费",
+    "freeDesc": "完美试用LLMO Directory",
+    "pro": "专业版",
+    "proDesc": "面向创作者和企业",
+    "perYear": "每年",
+    "freeTrial": "免费3个月",
+    "includes": "包括",
+    "link": "链接",
+    "links": "链接"
+  }
+}
+
+
+
+

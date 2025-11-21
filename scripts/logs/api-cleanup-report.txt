@@ -1,0 +1,68 @@
+API Route Cleanup Report
+================================================================================
+Generated: 2025-11-13T22:14:31.771Z
+
+Total routes scanned: 49
+Conflicts found: 1
+Routes kept: 48
+
+CONFLICTS RESOLVED:
+--------------------------------------------------------------------------------
+Route Path | App Router | Pages Router | Status
+--------------------------------------------------------------------------------
+/api/admin/mark-paid | app/api/admin/mark-paid/route.ts | pages/api/admin/mark-paid.ts | REMOVED (Pages Router)
+
+
+ALL ROUTES:
+--------------------------------------------------------------------------------
+Route Path | Router Type | Status | Action
+--------------------------------------------------------------------------------
+/api/admin/cancel-subscription | App Router | KEPT | App Router only (no conflict)
+/api/admin/delete-user | App Router | KEPT | App Router only (no conflict)
+/api/admin/mark-paid | Both (CONFLICT) | REMOVED | Keeping App Router, removing Pages Router
+/api/admin/promote-user | App Router | KEPT | App Router only (no conflict)
+/api/admin/remove-link | App Router | KEPT | App Router only (no conflict)
+/api/admin/renew-link | App Router | KEPT | App Router only (no conflict)
+/api/admin/resend-receipt | App Router | KEPT | App Router only (no conflict)
+/api/admin/send-test-email | App Router | KEPT | App Router only (no conflict)
+/api/admin/test | App Router | KEPT | App Router only (no conflict)
+/api/admin/verify-backlink | App Router | KEPT | App Router only (no conflict)
+/api/analyze-content | App Router | KEPT | App Router only (no conflict)
+/api/book-reminder | App Router | KEPT | App Router only (no conflict)
+/api/contact | App Router | KEPT | App Router only (no conflict)
+/api/create-checkout-session | App Router | KEPT | App Router only (no conflict)
+/api/cron/send-reminders | App Router | KEPT | App Router only (no conflict)
+/api/reminders/subscription | App Router | KEPT | App Router only (no conflict)
+/api/stripe-webhook | App Router | KEPT | App Router only (no conflict)
+/api/tasks/generate-llms | App Router | KEPT | App Router only (no conflict)
+/api/tasks/generate-sitemap | App Router | KEPT | App Router only (no conflict)
+/api/admin/grant-free | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/admin/links | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/admin/run-audit | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/admin/search | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/admin/send-reminder | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/admin/stats | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/admin/stripe-balance | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/admin/stripe-summary | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/admin/summary | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/admin/text-audit | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/admin/users | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/agency/invite | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/agency/member | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/analyze | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/analyzer/logs | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/analyzer-pro | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/auth/[...nextauth] | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/checkout/check-customer | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/checkout | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/cron/check-subscriptions | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/links/delete | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/links/update | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/metadata | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/profile/delete | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/profile/update | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/rebuild-index | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/stripe/webhooks | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/stripe-payment-info | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/stripe-portal | Pages Router | KEPT | Pages Router only (consider migrating to App Router)
+/api/user/stats | Pages Router | KEPT | Pages Router only (consider migrating to App Router)

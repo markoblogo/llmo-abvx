@@ -1,0 +1,49 @@
+{
+  "common": {
+    "welcome": "Bienvenido",
+    "login": "Iniciar sesión",
+    "logout": "Cerrar sesión",
+    "register": "Registrarse",
+    "home": "Inicio",
+    "about": "Acerca de",
+    "directory": "Directorio",
+    "dashboard": "Panel de control",
+    "myLinks": "Mis enlaces",
+    "admin": "Administrador",
+    "pricing": "Precios",
+    "faq": "Preguntas frecuentes",
+    "contact": "Contacto",
+    "addLink": "Añadir enlace",
+    "analyzer": "Analizador"
+  },
+  "hero": {
+    "title": "Sé visible para la IA",
+    "subtitle": "El primer directorio de optimización LLM para blogs y sitios web",
+    "startFree": "Comenzar gratis",
+    "tryAnalyzer": "Probar analizador →"
+  },
+  "features": {
+    "aiOptimized": "Optimizado para IA",
+    "aiOptimizedDesc": "Haz que tu contenido sea descubrible por grandes modelos de lenguaje y asistentes IA como ChatGPT, Claude y Gemini",
+    "simplePricing": "Precios simples",
+    "simplePricingDesc": "Comienza gratis durante 3 meses con un enlace incluido. Luego solo 1€/año por enlace adicional. Sin costes ocultos",
+    "easyManagement": "Gestión fácil",
+    "easyManagementDesc": "Panel de control para gestionar todos tus enlaces, categorías y estadísticas. Monitorea la visibilidad y citas en tiempo real"
+  },
+  "pricing": {
+    "title": "Precios simples",
+    "free": "Gratis",
+    "freeDesc": "Perfecto para probar LLMO Directory",
+    "pro": "Pro",
+    "proDesc": "Para creadores y empresas",
+    "perYear": "por año",
+    "freeTrial": "Gratis durante 3 meses",
+    "includes": "Incluye",
+    "link": "enlace",
+    "links": "enlaces"
+  }
+}
+
+
+
+
