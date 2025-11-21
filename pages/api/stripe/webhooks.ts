@@ -68,11 +68,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   try {
     switch (event.type) {
       case "invoice.payment_succeeded": {
-        const invoice = event.data.object as Stripe.Invoice;
+        // Расширяем тип Invoice, чтобы у него было опциональное поле subscription
+        const invoice = event.data.object as Stripe.Invoice & {
+          subscription?: string | Stripe.Subscription | null;
+        };
+
+        const subscriptionField = invoice.subscription;
+
         const subscriptionId =
-          typeof invoice.subscription === "string"
-            ? invoice.subscription
-            : (invoice.subscription as Stripe.Subscription)?.id || null;
+          typeof subscriptionField === "string"
+            ? subscriptionField
+            : (subscriptionField as Stripe.Subscription | null)?.id ?? null;
 
         if (!subscriptionId) {
           console.error("[v0] No subscription ID found in invoice");
@@ -80,7 +86,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }
 
         // Get subscription details from Stripe
-        const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+        const subscription = (await stripe.subscriptions.retrieve(subscriptionId)) as unknown as Stripe.Subscription & {
+          current_period_end: number;
+        };
         const customerId = typeof subscription.customer === "string" ? subscription.customer : subscription.customer.id;
 
         // Calculate new expiry date based on subscription period end
@@ -149,11 +157,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       case "invoice.payment_failed": {
-        const invoice = event.data.object as Stripe.Invoice;
+        // Расширяем тип Invoice, чтобы у него было опциональное поле subscription
+        const invoice = event.data.object as Stripe.Invoice & {
+          subscription?: string | Stripe.Subscription | null;
+        };
+
+        const subscriptionField = invoice.subscription;
+
         const subscriptionId =
-          typeof invoice.subscription === "string"
-            ? invoice.subscription
-            : (invoice.subscription as Stripe.Subscription)?.id || null;
+          typeof subscriptionField === "string"
+            ? subscriptionField
+            : (subscriptionField as Stripe.Subscription | null)?.id ?? null;
 
         if (!subscriptionId) {
           console.error("[v0] No subscription ID found in failed invoice");
@@ -267,7 +281,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         // Handle subscriptions
         if (mode === "subscription" && subscriptionId) {
           // Get subscription details
-          const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+          const subscription = (await stripe.subscriptions.retrieve(subscriptionId)) as unknown as Stripe.Subscription & {
+            current_period_end: number;
+          };
           const customerId = typeof subscription.customer === "string" ? subscription.customer : subscription.customer.id;
           const periodEnd = subscription.current_period_end;
           const expiryDate = new Date(periodEnd * 1000).toISOString();

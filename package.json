@@ -103,6 +103,7 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "postcss": "^8.5",
+    "prettier": "^3.3.3",
     "prisma": "^6.19.0",
     "tailwindcss": "^4.1.9",
     "tsx": "^4.20.6",
