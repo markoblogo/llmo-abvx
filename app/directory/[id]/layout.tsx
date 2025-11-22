@@ -15,9 +15,9 @@ const supabaseAdmin = createClient(
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: { id: string };
 }): Promise<Metadata> {
-  const { id } = await params;
+  const { id } = params;
 
   try {
     const { data: link } = await supabaseAdmin

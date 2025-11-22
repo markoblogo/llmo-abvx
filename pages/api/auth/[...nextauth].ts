@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+// @ts-ignore – PrismaClient тип недоступен на чистой установке, но нужен только в рантайме
 import { PrismaClient } from "@prisma/client";
 import { Resend } from "resend";
 
