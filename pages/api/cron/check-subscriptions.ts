@@ -14,7 +14,7 @@ const supabaseAdmin = createClient(
   },
 );
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const resend = new Resend(process.env.RESEND_API_KEY!);
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://llmo.abvx.xyz";
 
 interface EmailResult {
@@ -31,11 +31,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method !== "GET" && !isCronJob) {
     return res.status(405).json({ error: "Method not allowed" });
-  }
-
-  if (!resend) {
-    console.error("[check-subscriptions] Resend API key not configured");
-    return res.status(500).json({ error: "Resend API key not configured" });
   }
 
   const startTime = Date.now();

@@ -5,7 +5,7 @@ import { checkAdmin } from "@/lib/checkAdmin";
 import { supabase } from "@/lib/supabaseClient";
 import { Resend } from "resend";
 
-const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
+const resend = new Resend(process.env.RESEND_API_KEY!);
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -24,10 +24,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const { userId, email } = req.body;
-
-    if (!resend) {
-      return res.status(500).json({ error: "Resend API key not configured" });
-    }
 
     const targetEmail = email || "";
     if (!targetEmail) {

@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(process.env.RESEND_API_KEY!);
 const amazonUrl = process.env.NEXT_PUBLIC_AMAZON_BOOK_URL || "https://amazon.com/dp/B0FYRSSZKL";
 const downloadUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://llmo.abvx.xyz";
 

@@ -4,7 +4,7 @@ import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { checkAdmin } from "@/lib/auth"
 import { Resend } from "resend"
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+const resend = new Resend(process.env.RESEND_API_KEY!)
 
 export async function POST(request: Request) {
   try {
