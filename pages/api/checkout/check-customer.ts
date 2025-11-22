@@ -104,7 +104,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         });
 
         const hasCustomer = user?.accounts?.some(
-          (account) => account.provider === "stripe" && account.providerAccountId
+          (account: { provider: string; providerAccountId: string | null }) =>
+            account.provider === "stripe" && !!account.providerAccountId
         );
 
         if (hasCustomer && user?.accounts?.[0]?.providerAccountId) {
