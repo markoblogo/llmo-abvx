@@ -30,7 +30,7 @@
     "setup-i18n": "tsx scripts/setup-i18n-routing.ts",
     "clean": "rm -rf .next .turbo node_modules/.cache",
     "prepush": "pnpm run translate && rm -rf .next/dev/lock || true",
-    "postinstall": "echo '✅ Install complete. Run \"pnpm run reset\" if you encounter cache issues.'"
+    "postinstall": "prisma generate && echo '✅ Install complete. Run \"pnpm run reset\" if you encounter cache issues.'"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
