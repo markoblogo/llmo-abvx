@@ -10,3 +10,4 @@ CREATE INDEX IF NOT EXISTS idx_profiles_book_offer_seen ON public.profiles(book_
 -- Add comment for documentation
 COMMENT ON COLUMN public.profiles.book_offer_seen IS 'Indicates whether the user has seen the book download offer popup. Set to true after first viewing or dismissing the popup.';
 
+

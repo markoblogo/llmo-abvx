@@ -2,9 +2,7 @@ import { NextResponse } from "next/server"
 import { getServerSession } from "next-auth"
 import { authOptions } from "@/pages/api/auth/[...nextauth]"
 import { checkAdmin } from "@/lib/auth"
-import { Resend } from "resend"
-
-const resend = new Resend(process.env.RESEND_API_KEY!)
+import { getResendClient } from "@/lib/resendClient"
 
 export async function POST(request: Request) {
   try {
@@ -20,9 +18,17 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Email is required" }, { status: 400 })
     }
 
+    // Get email from address
+    const emailFrom = process.env.EMAIL_FROM;
+    if (!emailFrom) {
+      console.error("[admin/resend-receipt] EMAIL_FROM is not configured");
+      return NextResponse.json({ error: "EMAIL_FROM is not configured" }, { status: 500 });
+    }
+
     // Send receipt email
+    const resend = getResendClient();
     const { error } = await resend.emails.send({
-      from: "LLMO Directory <no-reply@llmo.directory>",
+      from: emailFrom,
       to: email,
       subject: "Your LLMO Directory Payment Receipt",
       html: `

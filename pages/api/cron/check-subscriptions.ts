@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createClient } from "@supabase/supabase-js";
-import { Resend } from "resend";
+import { getResendClient } from "@/lib/resendClient";
 
 // Create Supabase admin client
 const supabaseAdmin = createClient(
@@ -13,8 +13,6 @@ const supabaseAdmin = createClient(
     },
   },
 );
-
-const resend = new Resend(process.env.RESEND_API_KEY!);
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://llmo.abvx.xyz";
 
 interface EmailResult {
@@ -35,6 +33,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const startTime = Date.now();
   console.log("[check-subscriptions] Starting daily subscription and llms.txt checks...");
+
+  const resend = getResendClient();
 
   const emailResults: EmailResult[] = [];
   let subscriptionEmailsSent = 0;
@@ -144,8 +144,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               `;
             }
 
+            const emailFrom = process.env.EMAIL_FROM;
+            if (!emailFrom) {
+              console.error("[check-subscriptions] EMAIL_FROM is not configured");
+              subscriptionEmailsFailed++;
+              emailResults.push({
+                email: userEmail,
+                subject: subject,
+                status: "failed",
+                error: "EMAIL_FROM is not configured",
+              });
+              continue;
+            }
+
             const emailResult = await resend.emails.send({
-              from: process.env.EMAIL_FROM || "LLMO Directory <noreply@llmo.abvx.xyz>",
+              from: emailFrom,
               to: userEmail,
               subject: subject,
               html: htmlContent,
@@ -290,8 +303,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               </html>
             `;
 
+            const emailFrom = process.env.EMAIL_FROM;
+            if (!emailFrom) {
+              console.error("[check-subscriptions] EMAIL_FROM is not configured");
+              llmsEmailsFailed++;
+              emailResults.push({
+                email: userEmail,
+                subject: subject,
+                status: "failed",
+                error: "EMAIL_FROM is not configured",
+              });
+              continue;
+            }
+
             const emailResult = await resend.emails.send({
-              from: process.env.EMAIL_FROM || "LLMO Directory <noreply@llmo.abvx.xyz>",
+              from: emailFrom,
               to: userEmail,
               subject: subject,
               html: htmlContent,
@@ -378,8 +404,21 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
               </html>
             `;
 
+            const emailFrom = process.env.EMAIL_FROM;
+            if (!emailFrom) {
+              console.error("[check-subscriptions] EMAIL_FROM is not configured");
+              renewalEmailsFailed++;
+              emailResults.push({
+                email: userEmail,
+                subject: subject,
+                status: "failed",
+                error: "EMAIL_FROM is not configured",
+              });
+              continue;
+            }
+
             await resend.emails.send({
-              from: process.env.EMAIL_FROM || "LLMO Directory <noreply@llmo.abvx.xyz>",
+              from: emailFrom,
               to: userEmail,
               subject: subject,
               html: htmlContent,

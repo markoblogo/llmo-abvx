@@ -1,8 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY!);
+import { getResendClient } from "@/lib/resendClient";
 const amazonUrl = process.env.NEXT_PUBLIC_AMAZON_BOOK_URL || "https://amazon.com/dp/B0FYRSSZKL";
 const downloadUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://llmo.abvx.xyz";
 
@@ -25,11 +23,8 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  if (!resend) {
-    return NextResponse.json({ error: "Resend API key not configured" }, { status: 500 });
-  }
-
   try {
+    const resend = getResendClient();
     console.log("[v0] Starting book reminder email cron job");
 
     // Calculate date 6 months ago
@@ -112,9 +107,18 @@ export async function GET(req: NextRequest) {
           </html>
         `;
 
+        // Get email from address
+        const emailFrom = process.env.EMAIL_FROM;
+        if (!emailFrom) {
+          console.error("[book-reminder] EMAIL_FROM is not configured");
+          failCount++;
+          results.push({ email, status: "failed", error: "EMAIL_FROM is not configured" });
+          continue;
+        }
+
         // Send email via Resend
         const { data: emailResult, error: emailError } = await resend.emails.send({
-          from: process.env.EMAIL_FROM || "LLMO Directory <no-reply@llmo.directory>",
+          from: emailFrom,
           to: email,
           subject: "New Edition: LLMO: The Next SEO Revolution",
           html: emailHtml,

@@ -1,8 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY!);
+import { getResendClient } from "@/lib/resendClient";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://llmo.abvx.xyz";
 
 // Create Supabase admin client
@@ -28,10 +26,8 @@ export const GET = withErrorHandling(async (req: NextRequest) => {
 
   requireEnvVars(["RESEND_API_KEY", "SUPABASE_SERVICE_ROLE_KEY", "NEXT_PUBLIC_SUPABASE_URL"]);
 
-  if (!resend) {
-    return NextResponse.json({ error: "Resend API key not configured" }, { status: 500 });
-  }
-    console.log("[v0] Starting subscription renewal reminder cron job");
+  const resend = getResendClient();
+  console.log("[v0] Starting subscription renewal reminder cron job");
 
   // Calculate date 7 days from now
   const sevenDaysFromNow = new Date();
@@ -129,9 +125,18 @@ export const GET = withErrorHandling(async (req: NextRequest) => {
           </html>
       `;
 
+      // Get email from address
+      const emailFrom = process.env.EMAIL_FROM;
+      if (!emailFrom) {
+        console.error("[reminders/subscription] EMAIL_FROM is not configured");
+        failCount++;
+        results.push({ email: profile.email, status: "failed", error: "EMAIL_FROM is not configured" });
+        continue;
+      }
+
       // Send email via Resend
       const { data: emailResult, error: emailError } = await resend.emails.send({
-          from: process.env.EMAIL_FROM || "LLMO Directory <no-reply@llmo.directory>",
+          from: emailFrom,
           to: profile.email,
           subject: `Your LLMO Directory Pro subscription renews in ${daysLeft} days`,
         html: emailHtml,

@@ -55,3 +55,4 @@ COMMENT ON COLUMN public.analyzer_logs.recommendations IS 'Array of recommendati
 COMMENT ON COLUMN public.analyzer_logs.factors IS 'Breakdown of scoring factors';
 COMMENT ON COLUMN public.analyzer_logs.visibility IS 'Visibility level: high, medium, or low';
 
+

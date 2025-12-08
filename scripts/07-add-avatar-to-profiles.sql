@@ -8,3 +8,4 @@ COMMENT ON COLUMN public.profiles.avatar_url IS 'URL to user avatar image stored
 
 
 
+

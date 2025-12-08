@@ -96,3 +96,4 @@ export default function Component() {
 2. Добавьте переводы в остальные файлы (`fr.json`, `es.json`, и т.д.)
 3. Используйте ключи в страницах через `getTranslation()` или `useTranslation()`
 
+

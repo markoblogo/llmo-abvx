@@ -1,15 +1,43 @@
-import NextAuth from "next-auth";
+import NextAuth, { type NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
-// @ts-ignore – PrismaClient тип недоступен на чистой установке, но нужен только в рантайме
 import { PrismaClient } from "@prisma/client";
-import { Resend } from "resend";
+import { getResendClient } from "@/lib/resendClient";
 
 const prisma = new PrismaClient();
-const resend = new Resend(process.env.RESEND_API_KEY!);
 
-export const authOptions = {
+/**
+ * Проверяет наличие всех обязательных переменных окружения для NextAuth
+ * @returns массив ошибок конфигурации (пустой, если всё в порядке)
+ */
+function validateAuthConfig(): string[] {
+  const errors: string[] = [];
+
+  if (!process.env.NEXTAUTH_SECRET) {
+    errors.push("NEXTAUTH_SECRET is not set");
+  }
+
+  if (!process.env.GOOGLE_CLIENT_ID) {
+    errors.push("GOOGLE_CLIENT_ID is not set");
+  }
+
+  if (!process.env.GOOGLE_CLIENT_SECRET) {
+    errors.push("GOOGLE_CLIENT_SECRET is not set");
+  }
+
+  if (!process.env.EMAIL_FROM) {
+    errors.push("EMAIL_FROM is not set");
+  }
+
+  if (!process.env.RESEND_API_KEY) {
+    errors.push("RESEND_API_KEY is not set");
+  }
+
+  return errors;
+}
+
+export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
     GoogleProvider({
@@ -17,21 +45,36 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     EmailProvider({
-      sendVerificationRequest: async ({ identifier, url }) => {
-        await resend.emails.send({
-          from: process.env.EMAIL_FROM!,
-          to: identifier,
-          subject: "Sign in to LLMO Directory",
-          html: `
-            <div style="font-family:sans-serif;padding:24px">
-              <h2>🔗 LLMO Directory</h2>
-              <p>Click the button below to log in:</p>
-              <a href="${url}" style="background:#22c55e;color:white;padding:12px 20px;text-decoration:none;border-radius:6px;display:inline-block;margin-top:16px;">Log in</a>
-              <p style="margin-top:16px;font-size:12px;color:#666">If you didn't request this, please ignore this email.</p>
-              <p style="margin-top:16px;font-size:12px;color:#999">This link will expire in 24 hours.</p>
-            </div>
-          `,
-        });
+      async sendVerificationRequest({ identifier, url }) {
+        const from = process.env.EMAIL_FROM;
+
+        if (!from) {
+          console.error("[auth/email] EMAIL_FROM is not configured");
+          throw new Error("EMAIL_FROM is not configured");
+        }
+
+        const resend = getResendClient();
+
+        try {
+          const { error } = await resend.emails.send({
+            from,
+            to: identifier,
+            subject: "Sign in to LLMO Directory",
+            html: `
+              <p>Click the link below to sign in to LLMO Directory:</p>
+              <p><a href="${url}">${url}</a></p>
+              <p>If you did not request this email, you can safely ignore it.</p>
+            `,
+          });
+
+          if (error) {
+            console.error("[auth/email] Resend error:", error);
+            throw new Error("Unable to send verification email");
+          }
+        } catch (err) {
+          console.error("[auth/email] Unexpected error:", err);
+          throw new Error("Unable to send verification email");
+        }
       },
     }),
   ],
@@ -56,5 +99,12 @@ export const authOptions = {
     },
   },
 };
+
+// Проверяем конфигурацию при инициализации
+const configErrors = validateAuthConfig();
+if (configErrors.length > 0) {
+  console.error("NextAuth configuration errors:");
+  configErrors.forEach((error) => console.error(`  - ${error}`));
+}
 
 export default NextAuth(authOptions);

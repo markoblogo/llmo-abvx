@@ -1,8 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server";
-import { Resend } from "resend";
+import { getResendClient } from "@/lib/resendClient";
 import { createClient } from "@supabase/supabase-js";
-
-const resend = new Resend(process.env.RESEND_API_KEY!);
 
 // Use service role key for server-side operations to bypass RLS
 const supabaseAdmin = createClient(
@@ -32,16 +30,34 @@ export async function POST(request: NextRequest) {
     }
 
     // Get contact email from environment variable
-    const contactEmail = process.env.CONTACT_EMAIL || process.env.ADMIN_EMAIL || "a.biletskiy@gmail.com";
+    const contactEmail = process.env.CONTACT_EMAIL;
+    if (!contactEmail) {
+      console.error("[contact] CONTACT_EMAIL is not configured");
+      return NextResponse.json(
+        { error: "CONTACT_EMAIL is not configured" },
+        { status: 500 }
+      );
+    }
 
     const subject = `Contact Form: Message from ${name}`;
     let emailStatus: "sent" | "failed" = "sent";
     let errorMessage: string | null = null;
 
     try {
+      // Get email from address
+      const emailFrom = process.env.EMAIL_FROM;
+      if (!emailFrom) {
+        console.error("[contact] EMAIL_FROM is not configured");
+        return NextResponse.json(
+          { error: "EMAIL_FROM is not configured" },
+          { status: 500 }
+        );
+      }
+
       // Send email via Resend
+      const resend = getResendClient();
       await resend.emails.send({
-        from: "LLMO Directory <no-reply@llmo.directory>",
+        from: emailFrom,
         to: contactEmail,
         replyTo: email,
         subject: subject,

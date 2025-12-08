@@ -35,3 +35,4 @@ WHERE email = 'a.biletskiy@gmail.com';
 COMMENT ON COLUMN public.profiles.role IS 'User role: user or admin. For backward compatibility.';
 COMMENT ON COLUMN public.profiles.admin_level IS 'Admin access level: none (regular user), basic (basic admin), super (super admin with full access).';
 
+

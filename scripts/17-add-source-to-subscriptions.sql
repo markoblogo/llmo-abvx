@@ -26,3 +26,4 @@ WHERE table_schema = 'public'
 AND table_name = 'subscriptions' 
 AND column_name = 'source';
 
+

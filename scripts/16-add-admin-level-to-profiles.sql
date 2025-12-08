@@ -46,3 +46,4 @@ SELECT email, role, admin_level, full_name
 FROM public.profiles 
 WHERE email = 'a.biletskiy@gmail.com' OR admin_level != 'none';
 
+

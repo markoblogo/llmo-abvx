@@ -49,3 +49,4 @@ coverage
 # Vercel
 .vercel
 .pnpm-store/
+.env.local.backup

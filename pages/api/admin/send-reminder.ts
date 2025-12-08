@@ -3,9 +3,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import { checkAdmin } from "@/lib/checkAdmin";
 import { supabase } from "@/lib/supabaseClient";
-import { Resend } from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY!);
+import { getResendClient } from "@/lib/resendClient";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== "POST") {
@@ -30,9 +28,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(400).json({ error: "Email required" });
     }
 
+    // Get email from address
+    const emailFrom = process.env.EMAIL_FROM;
+    if (!emailFrom) {
+      console.error("[admin/send-reminder] EMAIL_FROM is not configured");
+      return res.status(500).json({ error: "EMAIL_FROM is not configured" });
+    }
+
     // Send reminder email about LLMO Quick Start guide update
+    const resend = getResendClient();
     const emailResult = await resend.emails.send({
-      from: process.env.EMAIL_FROM || "LLMO Directory <noreply@llmo.abvx.xyz>",
+      from: emailFrom,
       to: targetEmail,
       subject: "Your LLMO Quick Start guide has been updated",
       html: `

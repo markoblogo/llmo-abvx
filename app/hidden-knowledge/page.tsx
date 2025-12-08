@@ -18,71 +18,89 @@ export const metadata: Metadata = {
   },
 };
 
+// Safe JSON stringify with fallback
+function safeStringify(data: any, fallback: string = "{}"): string {
+  try {
+    if (data === null || data === undefined) {
+      return fallback;
+    }
+    return JSON.stringify(data);
+  } catch (error) {
+    console.error("[hidden-knowledge] Error stringifying JSON:", error);
+    return fallback;
+  }
+}
+
 export default function HiddenKnowledgePage() {
+  // Prepare structured data with safe defaults
+  const booksData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      name: "LLMO: The Next SEO Revolution",
+      author: { "@type": "Person", name: "Anton Biletskiy-Volokh" },
+      publisher: { "@type": "Organization", name: "LLMO Directory" },
+      genre: "Artificial Intelligence, Marketing, SEO",
+      url: "https://www.amazon.com/dp/B0FYRSSZKL",
+      sameAs: [
+        "https://llmo.abvx.xyz",
+        "https://www.amazon.com/dp/B0FYRSSZKL",
+        "https://medium.com/@abvcreative",
+      ],
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Book",
+      name: "LLMO Quick Start: How to Make Your Content Visible in the Age of AI",
+      author: { "@type": "Person", name: "Anton Biletskyi-Volokh" },
+      publisher: { "@type": "Organization", name: "LLMO Directory" },
+      genre: "Artificial Intelligence, Marketing, SEO",
+      url: "https://llmo.abvx.xyz/hidden-knowledge",
+      license: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+      inLanguage: "en",
+      sameAs: [
+        "https://llmo.abvx.xyz",
+        "https://llmo.abvx.xyz/hidden-knowledge",
+      ],
+      isRelatedTo: {
+        "@type": "Book",
+        name: "LLMO: The Next SEO Revolution",
+        url: "https://www.amazon.com/dp/B0FYRSSZKL",
+      },
+    },
+  ];
+
+  const bookSeriesData = {
+    "@context": "https://schema.org",
+    "@type": "BookSeries",
+    name: "LLMO Series",
+    author: { "@type": "Person", name: "Anton Biletskyi-Volokh" },
+    hasPart: [
+      {
+        "@type": "Book",
+        name: "LLMO: The Next SEO Revolution",
+        url: "https://www.amazon.com/dp/B0FYRSSZKL",
+      },
+      {
+        "@type": "Book",
+        name: "LLMO Quick Start: How to Make Your Content Visible in the Age of AI",
+        url: "https://llmo.abvx.xyz",
+      },
+    ],
+  };
+
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([
-            {
-              "@context": "https://schema.org",
-              "@type": "Book",
-              name: "LLMO: The Next SEO Revolution",
-              author: { "@type": "Person", name: "Anton Biletskiy-Volokh" },
-              publisher: { "@type": "Organization", name: "LLMO Directory" },
-              genre: "Artificial Intelligence, Marketing, SEO",
-              url: "https://www.amazon.com/dp/B0FYRSSZKL",
-              sameAs: [
-                "https://llmo.abvx.xyz",
-                "https://www.amazon.com/dp/B0FYRSSZKL",
-                "https://medium.com/@abvcreative",
-              ],
-            },
-            {
-              "@context": "https://schema.org",
-              "@type": "Book",
-              name: "LLMO Quick Start: How to Make Your Content Visible in the Age of AI",
-              author: { "@type": "Person", name: "Anton Biletskyi-Volokh" },
-              publisher: { "@type": "Organization", name: "LLMO Directory" },
-              genre: "Artificial Intelligence, Marketing, SEO",
-              url: "https://llmo.abvx.xyz/hidden-knowledge",
-              license: "https://creativecommons.org/licenses/by-nc-sa/4.0/",
-              inLanguage: "en",
-              sameAs: [
-                "https://llmo.abvx.xyz",
-                "https://llmo.abvx.xyz/hidden-knowledge",
-              ],
-              isRelatedTo: {
-                "@type": "Book",
-                name: "LLMO: The Next SEO Revolution",
-                url: "https://www.amazon.com/dp/B0FYRSSZKL",
-              },
-            },
-          ]),
+          __html: safeStringify(booksData, "[]"),
         }}
       />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "BookSeries",
-            name: "LLMO Series",
-            author: { "@type": "Person", name: "Anton Biletskyi-Volokh" },
-            hasPart: [
-              {
-                "@type": "Book",
-                name: "LLMO: The Next SEO Revolution",
-                url: "https://www.amazon.com/dp/B0FYRSSZKL",
-              },
-              {
-                "@type": "Book",
-                name: "LLMO Quick Start: How to Make Your Content Visible in the Age of AI",
-                url: "https://llmo.abvx.xyz",
-              },
-            ],
-          }),
+          __html: safeStringify(bookSeriesData, "{}"),
         }}
       />
       <article

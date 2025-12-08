@@ -1,7 +1,5 @@
-import { Resend } from "resend"
+import { getResendClient } from "./resendClient"
 import { supabase } from "./supabaseClient"
-
-const resend = new Resend(process.env.RESEND_API_KEY!)
 
 interface EmailResult {
   success: boolean
@@ -19,8 +17,15 @@ interface SendEmailParams {
  */
 export async function sendEmail({ to, subject, html }: SendEmailParams): Promise<boolean> {
   try {
+    const emailFrom = process.env.EMAIL_FROM;
+    if (!emailFrom) {
+      console.error("[email] EMAIL_FROM is not set");
+      throw new Error("EMAIL_FROM is not configured");
+    }
+
+    const resend = getResendClient();
     const { error } = await resend.emails.send({
-      from: "LLMO Directory <no-reply@llmo.directory>",
+      from: emailFrom,
       to,
       subject,
       html,
@@ -86,8 +91,15 @@ export async function sendReminderEmail(
 ): Promise<EmailResult> {
   const html = generateExpiryReminderEmail(userName, expiryDate, daysLeft)
   try {
+    const emailFrom = process.env.EMAIL_FROM;
+    if (!emailFrom) {
+      console.error("[email] EMAIL_FROM is not set");
+      throw new Error("EMAIL_FROM is not configured");
+    }
+
+    const resend = getResendClient();
     const { error } = await resend.emails.send({
-      from: "LLMO Directory <no-reply@llmo.directory>",
+      from: emailFrom,
       to: email,
       subject: "Your LLMO Directory listing is about to expire",
       html,
@@ -127,8 +139,15 @@ export async function sendReminderEmail(
  */
 export async function sendTestEmail(email: string): Promise<EmailResult> {
   try {
+    const emailFrom = process.env.EMAIL_FROM;
+    if (!emailFrom) {
+      console.error("[email] EMAIL_FROM is not set");
+      throw new Error("EMAIL_FROM is not configured");
+    }
+
+    const resend = getResendClient();
     const { error } = await resend.emails.send({
-      from: "LLMO Directory <no-reply@llmo.directory>",
+      from: emailFrom,
       to: email,
       subject: "Test Email from LLMO Directory Admin",
       html: `
